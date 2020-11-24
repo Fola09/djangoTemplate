@@ -1,0 +1,82 @@
+{% load static %}
+{% block styles %}
+<style>
+    .navbar {
+        background-color: #eceef1 !important;
+        padding: 0rem 1rem;
+    }
+
+    .nav-link {
+        color: rgb(133, 136, 139);
+    }
+
+    .nav-link:hover {
+        color: rgb(50, 72, 112);
+    }
+
+    .btn {
+        border-radius: 0% !important;
+    }
+
+    .signup-btn {
+        background-color: rgb(69, 184, 127) !important;
+    }
+
+    .signup-btn:hover {
+        background-color: rgb(60, 200, 60) !important;
+    }
+
+    @media (max-width: 990px) {
+        .full-width {
+            width: 100%;
+            margin: 2px 0px !important;
+        }
+    }
+</style>
+{% endblock %}
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-lg">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about-us' %}">About Us</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Welcome, {{ request.user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-secondary full-width ml-2 mr-1" href="{% url 'account_change_password' %}">Change password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-danger full-width mx-1" href="{% url 'account_logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-secondary full-width ml-2 mr-1" href="tel:09037974625">(090) 379-74625</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success full-width mx-1" href="{% url 'account_login' %}">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success signup-btn full-width mx-1" href="{% url 'account_signup' %}">Signup for free</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

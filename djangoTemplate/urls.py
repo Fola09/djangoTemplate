@@ -6,14 +6,14 @@ from django.urls import path, include
 from django.shortcuts import render
 
 
-def home(request):
-    return render(request, 'base.html', {})
+from core.views import HompePageView, AboutPageView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', home)
+    path('', HompePageView.as_view(), name='home'),
+    path('about/', AboutPageView.as_view(), name='about-us')
 ]
 
 if settings.DEBUG:

@@ -17,14 +17,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django.contrib.sites',
 
+     # Third-party apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
+    'imagekit',
 
-    'core',
+    # Local apps
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -89,3 +92,19 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+DEFAULT_FROM_EMAIL = 'fola@bestbookstore.com'
+
+LOGIN_REDIRECT_URL = 'home'
+
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+
+ACCOUNT_SESSION_REMEMBER = True
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
